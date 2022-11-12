@@ -52,6 +52,7 @@ $(document).ready(()=>{
             burnUp.val('4');
         }
         if(burnUpValue < 4 && Bivariate.neighborhood == 1) Bivariate.burnUp = burnUpValue;
+        
     });
 
     $('#saveTo').on('change', () =>{
