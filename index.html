@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Of Life</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body  id="body">
+    
+    <div class="setting">
+        <button class="btn__start" id="start">Старт</button>
+        <button class="btn__start" id="stop">Стоп</button>
+        <p id="generation">Поколение: 0 </p>
+    </div>
+    
+    <div class="hamburger-menu" >
+        <input id="menu__toggle" type="checkbox" />
+         <label class="menu__btn" for="menu__toggle">
+       <span></span>
+     </div>
+    
+    <div class="settings" id="settings">
+        <h1>Настройки</h2>
+            <div class="reactBel">
+                Реакция Белоусова: <input type="checkbox" id="reactBel">
+            </div>
+             
+        <div id="showSetings">
+            <h3 >Правила игры:</h3>
+            <div class="speedP okr">Окрестность:
+                <select id="okrSelect" >
+                    <option value="0">Мура</option>
+                    <option value="1">Фон Неймана</option>
+                </select>
+                </div>
+            <p class="burn">Рождение от 
+                <input type="number" class="number" value="3" min="0" max="8" id="burnTo"> до 
+                <input type="number" class="number" value="3" min="0" max="8" id="burnUp">
+            </p>
+            <p class="burn">Выживание от 
+                <input type="number" class="number" value="2" min="0" max="8" id="saveTo"> до 
+                <input type="number" class="number" value="3" min="0" max="8"id="saveUp">
+            </p>
+        </div>
+            <div class="speedP">Скорость:
+            <select id="speedSelect">
+                <option value="1000">1x</option>
+                <option value="500">2x</option>
+                <option value="200">5x</option>
+                <option value="100">10x</option>
+                <option value="50">20x</option>
+                <option value="10">50x</option>
+                <option selected="speedSelect" value="1">100x</option>
+                </select>
+            </div>
+            <div class="color__txt">Цвет:
+                <input type="color" id="colorBody" class="color" value="#000000"/>
+                <input type="color" id="color" class="color" value="#ff0000"/>
+            </div>
+            <div class="resolution__txt">Разрешение:
+                <input type="range" min="1" max="25" value="1" id="resolution">
+            </div>
+            <div id="setings2">
+                <select id="presset">
+                    <option value="1" >B3/S23</option>
+                    <option value="2" >B3/Sall</option>
+                    <option value="3" >B5678/S45678</option>
+                    <option value="4" >B1/Sall</option>
+                    <option value="5" >B2/S2345</option>
+                    </select>
+                
+                <div class="modeStep">
+                    Режим шаг: <input type="checkbox" id="checkboxStep">
+                </div>
+                <div class="brushes">
+                    Режим кисти: <button id="brushes__btn" >Рисование</button>
+                </div>
+            </div>
+            
+            <button id="clear" >Очистить поле</button>
+        
+
+        <div id="reactBelSetings">
+            <div class="color__txt color__cell">Цвет:
+                <input type="color" id="colorCellOne" class="colorBel" value="#A81F15"/>
+                <input type="color" id="colorCellTwo" class="colorBel" value="#8E58A7"/>
+                <input type="color" id="colorCellThree" class="colorBel" value="#62588D"/>
+            </div>
+        </div>
+    </div>
+    <canvas id="canvas">
+    </canvas>
+</body>
+<script src="js/jquery-3.6.1.min.js"></script>
+<script src="js/gpu-browser.min.js"></script>
+<script src="js/BivariateClass.js"></script>
+<script src="js/main.js"></script>
+<script src="js/events.js"></script>
+</html>
