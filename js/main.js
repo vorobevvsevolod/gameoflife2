@@ -84,7 +84,7 @@ function clearMap() {
 }
 
 let time = 0;
-let genP = $('#generation');
+let genP = $('.setting__generation');
 function gameStep(timestamp){
     const diff = timestamp - time;
     let progress;
@@ -99,7 +99,7 @@ function gameStep(timestamp){
     }
 
     time = timestamp;
-    genP.html("Поколение: " + Math.floor(1000 / diff));
+    genP.html("Поколение: " + TwoGame.countGeneration);
 
     requestFrameId = requestAnimationFrame(gameStep); 
 }
