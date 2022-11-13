@@ -207,6 +207,11 @@ $(document).ready(()=>{
     $('#reactBel').on('click', () =>{
         Bivariate.ReactBelMode = $('#reactBel').is(':checked');
         $('#openBlockRuls').slideToggle();
+
+        if($('#blockRuls').css('display')){
+            $('#blockRuls').slideToggle();
+        }
+
         $('#colors').slideToggle();    
         $('#reactBelSetings').slideToggle();
         $('#clear').slideToggle();
