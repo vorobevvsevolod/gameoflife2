@@ -209,7 +209,8 @@ $(document).ready(()=>{
         $('#openBlockRuls').slideToggle();
 
         if($('#blockRuls').css('display')){
-            $('#blockRuls').slideToggle();
+            $('#blockRuls').slideUp();
+            $('#arrowRuls').removeClass('gamesruls__open')
         }
 
         $('#colors').slideToggle();    
