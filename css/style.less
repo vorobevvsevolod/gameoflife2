@@ -1,7 +1,10 @@
 //compress:true
+@import "model.less";
+@import "normalize.less";
+
 *,
 *:after,
-&:before{
+*:before{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -13,46 +16,198 @@ html{
 }
 
 body{
-position: relative;
-font-family: 'Roboto', sans-serif;
-background-color: black;
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    background-color: black;
 }
-
-
 
 #canvas{
     display: block;
 }
 
-.btn__start{
-    color: black;
-    border-radius: 1em;
-    font-size: 15px;
-    width: 5.3em;
-    height: 2em;
-    padding: 0.1em ;
-    margin-right: 0.66em;
-    font-weight: bold;
-    border: 2px solid black;
-    border-radius: 3px;
-}
-
-
-
 .setting{
     position: absolute;
     display: flex;
     margin: 0.67rem;
-}
-
-#generation{
     font-weight: bold;
-    padding: 0.34em;
-    margin-left: 0.5em;
-    background-color: white;
-    border-radius: 4px;
+
+    &__btn{
+        border-radius: 0.4em;
+        width: 5.3em;
+        height: 2em;
+        padding: 0.1em;
+        margin-right: 0.66em;
+        border: 2px solid black;
+        font-weight: bold;
+    }
+
+    &__generation{  
+        line-height: 1.9em;
+        padding: 0 0.34em;
+        margin-left: 0.5em;
+        background-color: white;
+        border-radius: 4px;
+    }
 }
 
+.settings{
+    position: absolute;
+    top: 0.4em;
+    right: 0.4em;
+    border-radius: 10px; 
+    background-color: #1E2022;
+    width: 20em;
+    height: auto;
+    padding: 1em;
+    font-weight: bold;
+    color: white;
+    display: none;
+
+    h1{
+      margin: 0;
+    }
+
+    h3{
+        margin-top: 0.5em;
+        color: #FF9A00;
+    }
+}
+
+.reactbel__input{
+    display: flex;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 0.5em;
+    input{
+        position: relative;
+        top: 2px;
+        margin-left: 0.5em;
+        width: 1em;
+        height: 1em;
+    }
+}
+
+.gamesruls{
+    cursor: pointer;
+    position: relative;
+    margin-top: 0.5em;
+    padding: 0.4em;
+    border: 2px solid #e6c619;
+    border-radius: 0.5em;
+
+    &__img{
+        cursor: pointer;
+        display: block;
+        width: 1.2em;
+        height: 1.7em;
+        position: absolute;
+        top: 48%;
+        right: 3%;
+        transition: .3s ease;
+        transform: translateY(-50%);
+        
+    }
+
+    &__open{
+        top: 14%;
+        transform: rotate(180deg);
+    }
+    &__block{
+        display: none;
+        margin-left: 7px;
+        width: 95%;
+        border: 1px solid white;
+        border-top: transparent;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        padding: 10px 5px;
+        padding-bottom: 12px;
+    }
+
+    &__okr{
+        p{
+            color: #FF5722;
+        }
+        line-height: 1.6em;
+        display: flex;
+    }
+
+    &__burn{
+        color: #FFC93C;
+        margin-top: 0.6em;
+        display: flex;
+        font-weight: bold;
+    }
+
+    &__number{
+        padding-left: 0.34em;
+        margin: 0px 0.6em;
+        font-weight: bold;
+        width: 2.5em;
+        border: 1px solid black;
+        border-radius: 3px;
+        color: white;
+        background-color: rgb(87, 82, 82);
+    }
+
+    &__presset{
+        margin-top: 0.7em;
+        display: flex;
+        line-height: 1.6em;
+    }
+}
+
+
+#blockSetting{
+    padding: 10px 15px;
+    
+}
+
+.speedSetting{
+    color: #FF165D;
+    display: flex;
+    line-height: 1.6em;
+}
+
+.colors{
+    margin-top: 0.6em;
+    color: #18b5d9;
+
+    &__color{
+        margin-left: 0.4em;
+        height: 1.5em;
+    }
+}
+
+.select{
+    margin-left: 1.2em;
+    font-weight: bold;
+    border-radius: 3px;
+    color: white;
+    border: 1px solid white;
+    background-color: #2a2a2a;
+}
+
+.selectPresset{
+    margin-left: 0.5em;
+    padding: 0px 1em;
+    font-weight: bold;
+    border-radius: 3px;
+    border: 1px solid white;
+    background-color: #2a2a2a;
+    color: white;
+}
+
+.resolution{
+    margin-top: 0.5em;
+    color: #b53daf;
+    &__input{
+        position: relative;
+        top: 4px;
+        margin-left: 1em;
+        width: 5em;
+    }
+}
 
 
 //Бургер меню
@@ -112,80 +267,6 @@ background-color: black;
   top: 8px;
 }
 
-.settings{
-    position: relative;
-    top: 0.4em;
-    right: 0.4em;
-    border-radius: 10px;
-    z-index: 1;
-    position: absolute;
-    background-color: #2a2a2a;
-    width: 20em;
-    height: auto;
-    padding: 0.67em;
-    font-weight: bold;
-    color: white;
-    opacity: 0;
-    display: none;
-    
-    transition: opacity .35s ease;
-    h1{
-        margin-left: 0.67em;
-        margin-top: 0.2em;
-    }
-
-    h3{
-        margin-top: 0.5em;
-        color: #599d62;
-        margin-left: 0.67em;
-    }
-}
-
-.opacity{
-    opacity: 1;
-}
-.opacityNone{
-    opacity: 0;
-}
-
-.displayBlock{
-    display: block;
-}
-
-.displayNone{
-    display: none;
-}
-
-.burn{
-    display: flex;
-    font-weight: bold;
-    margin-top: 0.5em;
-    margin-left: 2em;
-}
-
-.number{
-    padding-left: 0.34em;
-    margin: 0px 0.6em;
-    font-weight: bold;
-    width: 2.3em;
-    border: 1px solid black;
-    border-radius: 3px;
-    color: red;
-    background-color: rgb(87, 82, 82);
-}
-.speedP{
-    display: flex;
-    font-size: 16px;
-    color: #e5898c;
-    padding-left: 0.67em;
-    margin-top: 1em;
-}
-
-.okr{
-    margin-top: 0.5em;
-    color: #fc060e;
-}
-
 #speedSelect{
     margin-left: 1.2em;
     padding: 1px 0.67em;
@@ -196,38 +277,9 @@ background-color: black;
     background-color: #2a2a2a;
 }
 
-#okrSelect{
-    margin-left: 1.2em;
-    padding: 1px 0.67em;
-    font-weight: bold;
-    border-radius: 3px;
-    color: white;
-    border: 2px solid white;
-    background-color: #2a2a2a;
-}
-
-
-.color__txt{
-    font-size: 1.3em;
-    padding-left: 0.67em;
-    margin-top: 0.6em;
-    color: #18b5d9;
-}
-
-
-.resolution__txt{
-    font-size: 1.3em;
-    padding-left: 0.67em;
-    margin-top: 0.9em;
-    color: #b53daf;
-}
-#resolution{
-    width: 4.5em;
-    margin-left: 1em;
-}
 
 .color__cell{
-    margin-top: 1em;
+    margin-top: 0.6em;
 }
 
 
@@ -243,20 +295,11 @@ background-color: black;
     margin-left: 1em;
 }
 
-#presset{
-    padding: 0px 1em;
-    margin-top: 0.8em;
-    margin-left: 0.8em;
-    font-weight: bold;
-    border-radius: 3px;
-    border: 2px solid white;
-    background-color: #2a2a2a;
-    color: white;
-}
+
 
 #clear{
     position: relative;
-    margin-top: 1em;
+    margin-top: 0.6em;
     left: 50%;
     transform: translateX(-50%);
     padding: 0.2em 0.6em;
@@ -270,7 +313,7 @@ background-color: black;
 
 .brushes{
     display: none;
-    margin-left: 0.8em;
+
     margin-top: 0.5em;
     font-weight: bold;
     font-size: 1.2em;
@@ -285,36 +328,20 @@ background-color: black;
     }
 }
 
-.reactBel{
+
+
+.modeStep{
     position: relative;
-    margin-left: 0.8em;
     margin-top: 0.4em;
     font-weight: bold;
     font-size: 1.2em;
 
     input{
-        position: absolute;
-        top: 8%;
-        margin-left: 5px;
-        width: 1.5em;
-        height: 1.5em;
-    }
-
-}
-
-.modeStep{
-    position: relative;
-    margin-left: 0.8em;
-    margin-top: 0.8em;
-    font-weight: bold;
-    font-size: 1.2em;
-
-    input{
-        position: absolute;
-        top: 8%;
-        margin-left: 5px;
-        width: 1.5em;
-        height: 1.5em;
+        position: relative;
+        top: 3px;
+        margin-left: 0.5em;
+        width: 1em;
+        height: 1em;
     }
 }
 
@@ -335,13 +362,7 @@ background-color: black;
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
-    #okrSelect{
-        font-size: 0.6em;
-    }
 
-    .btn__start{
-        font-size: 13px;
-    }
    html{
     font-size: 12px;
    }
@@ -357,7 +378,6 @@ and (max-device-width : 480px) {
             margin-top: 0em;
             margin-left: 0.3em;
         }
-       // height: 34em;
     }
 
     
@@ -376,16 +396,4 @@ and (max-device-width : 480px) {
         top: 3.3%;
         right: 3%;   
     }
-
-    input{
-        margin-left: 5px;
-        width: 1.2em;
-        height: 1.2em;
-    }
-
-    .brushes{
-        margin-left: 0.8em;
-        margin-top: 1em;
-    }    
-
 }

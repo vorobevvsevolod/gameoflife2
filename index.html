@@ -8,12 +8,15 @@
 
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body  id="body">
-    
+
+<body id="body">
+    <div id="model">
+
+    </div>
     <div class="setting">
-        <button class="btn__start" id="start">Старт</button>
-        <button class="btn__start" id="stop">Стоп</button>
-        <p id="generation">Поколение: 0 </p>
+        <button class="setting__btn" id="start">Старт</button>
+        <button class="setting__btn" id="stop">Стоп</button>
+        <p class="setting__generation">Поколение: 0 </p>
     </div>
     
     <div class="hamburger-menu" >
@@ -23,78 +26,99 @@
      </div>
     
     <div class="settings" id="settings">
-        <h1>Настройки</h2>
+        <h1>Настройки</h1>
             <div class="reactBel">
-                Реакция Белоусова: <input type="checkbox" id="reactBel">
-            </div>
-             
-        <div id="showSetings">
-            <h3 >Правила игры:</h3>
-            <div class="speedP okr">Окрестность:
-                <select id="okrSelect" >
-                    <option value="0">Мура</option>
-                    <option value="1">Фон Неймана</option>
-                </select>
-                </div>
-            <p class="burn">Рождение от 
-                <input type="number" class="number" value="3" min="0" max="8" id="burnTo"> до 
-                <input type="number" class="number" value="3" min="0" max="8" id="burnUp">
-            </p>
-            <p class="burn">Выживание от 
-                <input type="number" class="number" value="2" min="0" max="8" id="saveTo"> до 
-                <input type="number" class="number" value="3" min="0" max="8"id="saveUp">
-            </p>
-        </div>
-            <div class="speedP">Скорость:
-            <select id="speedSelect">
-                <option value="1000">1x</option>
-                <option value="500">2x</option>
-                <option value="200">5x</option>
-                <option value="100">10x</option>
-                <option value="50">20x</option>
-                <option value="10">50x</option>
-                <option selected="speedSelect" value="1">100x</option>
-                </select>
-            </div>
-            <div class="color__txt">Цвет:
-                <input type="color" id="colorBody" class="color" value="#000000"/>
-                <input type="color" id="color" class="color" value="#ff0000"/>
-            </div>
-            <div class="resolution__txt">Разрешение:
-                <input type="range" min="1" max="25" value="1" id="resolution">
-            </div>
-            <div id="setings2">
-                <select id="presset">
-                    <option value="1" >B3/S23</option>
-                    <option value="2" >B3/Sall</option>
-                    <option value="3" >B5678/S45678</option>
-                    <option value="4" >B1/Sall</option>
-                    <option value="5" >B2/S2345</option>
-                    </select>
                 
+            </div>
+            <div class="gamesruls" id="openBlockRuls">
+                Правила игры
+                <img class="gamesruls__img" src="src/треугольник.png" alt="" id="arrowRuls">
+
+                
+            </div>
+            <div class="gamesruls__block" id="blockRuls">  
+                <div class="gamesruls__okr">
+                    <p>Окрестность:</p>  
+                    <select id="okrSelect" class="select" >
+                        <option value="0">Мура</option>
+                        <option value="1">Фон Неймана</option>
+                    </select>
+                </div>
+                <p class="gamesruls__burn">Рождение от 
+                    <input type="number" class="gamesruls__number"value="3" min="0" max="8" id="burnTo"> до 
+                    <input type="number" class="gamesruls__number"value="3" min="0" max="8" id="burnUp">
+                </p>
+                <p class="gamesruls__burn">Выживание от 
+                    <input type="number" class="gamesruls__number" value="2" min="0" max="8" id="saveTo"> до 
+                    <input type="number" class="gamesruls__number" value="3" min="0" max="8"id="saveUp">
+                </p>
+                <div class="gamesruls__presset"> 
+                    <p>Прессеты</p> 
+                    <select id="presset" class="selectPresset">
+                        <option value="1" >B3/S23</option>
+                        <option value="2" >B3/Sall</option>
+                        <option value="3" >B5678/S45678</option>
+                        <option value="4" >B1/Sall</option>
+                        <option value="5" >B2/S2345</option>
+                    </select>
+                </div>
+                
+            </div>
+
+            <div class="gamesruls" id="openBlockSetting">
+                Настройки игры
+                <img class="gamesruls__img" src="src/треугольник.png" alt="" id="arrowSetting">
+
+                
+            </div>
+
+            <div class="gamesruls__block block__setting" id="blockSetting">
+                <div class="speedSetting">
+                    <p>Скорость</p> 
+                    <select id="speedSelect">
+                        <option value="1000">1x</option>
+                        <option value="500">2x</option>
+                        <option value="200">5x</option>
+                        <option value="100">10x</option>
+                        <option value="50">20x</option>
+                        <option value="10">50x</option>
+                        <option selected="speedSelect" value="1">100x</option>
+                        </select>
+                </div>
+                <div class="colors" id="colors">Цвет
+                    <input type="color" id="colorBody" class="colors__color" value="#000000"/>
+                    <input type="color" id="color" class="colors__color" value="#ff0000"/>
+                </div>
+                <div id="reactBelSetings">
+                    <div class="color__txt color__cell">Цвет:
+                        <input type="color" id="colorCellOne" class="colorBel" value="#A81F15"/>
+                        <input type="color" id="colorCellTwo" class="colorBel" value="#8E58A7"/>
+                        <input type="color" id="colorCellThree" class="colorBel" value="#62588D"/>
+                    </div>
+                </div>
+                <div class="resolution">Разрешение:
+                    <input type="range" min="1" max="25" value="1" id="resolution" class="resolution__input">
+                </div>
                 <div class="modeStep">
                     Режим шаг: <input type="checkbox" id="checkboxStep">
                 </div>
-                <div class="brushes">
-                    Режим кисти: <button id="brushes__btn" >Рисование</button>
-                </div>
+            </div> 
+            <div class="reactbel__input">
+                <p>Реакция Белоусова </p> 
+                <input type="checkbox" id="reactBel">
+            </div> 
+            <div class="brushes">
+                Режим кисти: <button id="brushes__btn" >Рисование</button>
             </div>
             
             <button id="clear" >Очистить поле</button>
-        
 
-        <div id="reactBelSetings">
-            <div class="color__txt color__cell">Цвет:
-                <input type="color" id="colorCellOne" class="colorBel" value="#A81F15"/>
-                <input type="color" id="colorCellTwo" class="colorBel" value="#8E58A7"/>
-                <input type="color" id="colorCellThree" class="colorBel" value="#62588D"/>
-            </div>
-        </div>
+                      
+        
     </div>
     <canvas id="canvas">
     </canvas>
 </body>
-<script src="js/jquery-3.6.1.min.js"></script>
 <script src="js/gpu-browser.min.js"></script>
 <script src="js/BivariateClass.js"></script>
 <script src="js/main.js"></script>

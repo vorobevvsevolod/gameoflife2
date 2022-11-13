@@ -1,21 +1,7 @@
 $(document).ready(()=>{
     //открытие меню настроек
     $('#menu__toggle').on('click', ()=>{
-        if($('#menu__toggle').is(':checked')){
-            $('#settings').removeClass("displayNone");
-            $('#settings').removeClass("opacityNone");
-            $('#settings').addClass("displayBlock");
-
-            setTimeout(() =>{
-                $('#settings').addClass("opacity");
-            }, 5)
-        }else{
-            $('#settings').removeClass("displayBlock")
-            $('#settings').removeClass("opacity")
-            $('#settings').addClass("opacityNone")
-            $('#settings').addClass("displayNone")
-        }
-
+        $('#settings').fadeToggle();
     });
 
 
@@ -52,7 +38,7 @@ $(document).ready(()=>{
             burnUp.val('4');
         }
         if(burnUpValue < 4 && Bivariate.neighborhood == 1) Bivariate.burnUp = burnUpValue;
-        
+
     });
 
     $('#saveTo').on('change', () =>{
@@ -220,21 +206,13 @@ $(document).ready(()=>{
     //Рекция белоусова
     $('#reactBel').on('click', () =>{
         Bivariate.ReactBelMode = $('#reactBel').is(':checked');
-
-        if(Bivariate.ReactBelMode){
-            restartGame();
-            $('.color__txt').css('display', 'none');
-            $('#showSetings').css('display', 'none');
-            $('#reactBelSetings').css('display', 'block');
-            $('#setings2').css('display', 'none');
-
-        }else{
-            restartGame();
-            $('.color__txt').css('display', 'block');
-            $('#showSetings').css('display', 'block');
-            $('#reactBelSetings').css('display', 'none');
-            $('#setings2').css('display', 'block');
-        }
+        $('#openBlockRuls').slideToggle();
+        $('#colors').slideToggle();    
+        $('#reactBelSetings').slideToggle();
+        $('#clear').slideToggle();
+        if(window.innerWidth <= 400) $('.brushes').slideToggle();
+        
+        restartGame();
     });
 
     //Нажатие на canvas
@@ -264,6 +242,26 @@ $(document).ready(()=>{
     $('#canvas').on('touchmove', (event) =>{
         if(TwoGame !== undefined)canvasClick(event.touches[0].clientX, event.touches[0].clientY);   
     });
+
+    let openGameRuls = false;
+    let openGameSetting = false;
+    
+    //Настройки
+    $('#openBlockRuls').on('click', () =>{
+        openGameRuls = openGameRuls ? false : true;
+        $('#blockRuls').slideToggle();
+        if(openGameRuls) $('#arrowRuls').addClass('gamesruls__open')
+        else $('#arrowRuls').removeClass('gamesruls__open')
+    });
+
+    $('#openBlockSetting').on('click', () =>{
+        openGameSetting = openGameSetting ? false : true;
+        $('#blockSetting').slideToggle();
+        if(openGameSetting) $('#arrowSetting').addClass('gamesruls__open')
+        else $('#arrowSetting').removeClass('gamesruls__open')
+    });
+
+
 
 });
 

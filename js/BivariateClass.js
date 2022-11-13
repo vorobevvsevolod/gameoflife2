@@ -95,10 +95,14 @@ static PressetChange(burnToValue, burnUpValue, saveToValue, saveUpValue){
     if(this.Map[pos + this.width] == cellFound) count++;
     if(this.Map[pos - this.width] == cellFound) count++;
 
-    if(this.Map[pos - this.width - 1] == cellFound) count++;
-    if(this.Map[pos - this.width + 1] == cellFound) count++;
-    if(this.Map[pos + this.width + 1] == cellFound) count++;
-    if(this.Map[pos + this.width - 1] == cellFound) count++;
+   if( count <= 3){
+        if(this.Map[pos - this.width - 1] == cellFound) count++;
+        if(this.Map[pos - this.width + 1] == cellFound) count++;
+        if(this.Map[pos + this.width + 1] == cellFound) count++;
+        if(this.Map[pos + this.width - 1] == cellFound) count++;
+    }
+    
+    
     
     if(count >= 3) this.NewMap[pos] = cellFound; else this.NewMap[pos] = this.Map[pos];
 }
