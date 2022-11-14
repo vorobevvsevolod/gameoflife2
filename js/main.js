@@ -1,15 +1,21 @@
 'use strict'
 //CANVAS
-const canvas = $('#canvas')[0];
-const canvasContext = canvas.getContext('webgl2', { premultipliedAlpha: false });
+const canvasGPU = $('#canvas')[0];
+const canvasContextGPU = canvasGPU.getContext('webgl2') ||canvasGPU.getContext('webgl') || canvas.getContext('experimental-webgl2')|| canvas.getContext('experimental-webgl');
 
-const gpu = new GPU({
-    canvas,
-    context: canvasContext
+const canvasCPU = $('#canvasCPU')[0];
+const canvasContextCPU = canvasCPU.getContext('2d');
+
+let colorGrid = "#ffffff";
+
+let gpu = new GPU({
+    canvas: canvasGPU,
+    context: canvasContextGPU
 });
 
 //Масштаб
 let resolution = 1;
+let renderSetting = 0;
 
 //Размер экрана
 const WIDHT = window.innerWidth;
@@ -48,13 +54,25 @@ let draw = false;
 window.onload = () =>{
     canvas.width = WIDHT;
     canvas.height = HEIGHT;
+    widthMap = Math.ceil(WIDHT / resolution) + 2;
+    heightMap = Math.ceil(HEIGHT / resolution) + 2;
+    //Получение инфы о видеокарте
+    let debugInfo = canvasContextGPU.getExtension('WEBGL_debug_renderer_info');
+    let vendor = canvasContextGPU.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
+
+    let n = vendor.split(" ");
+    n[n.length - 1].substring(1);
+    let result = n[n.length - 1].slice(1,-1);
+    console.log(vendor, result)
+    if(result == 'Intel' ) $('.model').fadeToggle();
 };
+ 
 
 //Старт игры
 function startGameButton() {
     if(!startGame){
         restartGame();
-        document.getElementById('stop').textContent = 'Заново';
+        $('#stop').html('Заново');
     }
     
     if(modeStepGame){
@@ -63,8 +81,9 @@ function startGameButton() {
         gameStop = gameStop ? false : true;
 
         if(gameStop && !startGame) gameStop = false;
-        if(gameStop) {document.getElementById('start').textContent = 'Старт'; cancelAnimationFrame(requestFrameId);} else 
-        {document.getElementById('start').textContent = 'Стоп'; requestFrameId = requestAnimationFrame(gameStep);}
+        if(gameStop) {$('#start').html('Старт'); cancelAnimationFrame(requestFrameId);} 
+        else 
+        {$('#start').html('Стоп'); requestFrameId = requestAnimationFrame(gameStep);}
     }   
     startGame = true;
 }
@@ -94,7 +113,9 @@ function gameStep(timestamp){
 
     if(progress > stepInMs){
         TwoGame.NextGeneration();
-        render(TwoGame.Map, widthMap, Bivariate.ReactBelMode, resolution, colorRGB);
+        renderSetting == 2 
+            ? PrintMap()
+            :render(TwoGame.Map, widthMap, Bivariate.ReactBelMode, resolution, colorRGB);
         startTime = timestamp;
     }
 
@@ -106,14 +127,56 @@ function gameStep(timestamp){
 
 //Обновление экрана игры
 function printRequstMap() {
-    render(TwoGame.Map, widthMap, Bivariate.ReactBelMode, resolution, colorRGB)
+    renderSetting == 2 
+            ? PrintMap()
+            :render(TwoGame.Map, widthMap, Bivariate.ReactBelMode, resolution, colorRGB);
 };
 
 //Режим шаг отрисовка
 function gameStepMode() {
     TwoGame.NextGeneration()
-    render(TwoGame.Map, widthMap, Bivariate.ReactBelMode, resolution, colorRGB);
+    renderSetting == 2 
+            ? PrintMap()
+            :render(TwoGame.Map, widthMap, Bivariate.ReactBelMode, resolution, colorRGB);
     genP.html("Поколение: " + TwoGame.countGeneration);
+}
+
+const PrintMap = () =>{
+    canvasContextCPU.clearRect(0,0, WIDHT, HEIGHT);
+    canvasContextCPU.beginPath();
+    
+    for(let y = 1; y < heightMap - 1; y++)
+        for(let x = 1; x < widthMap - 1; x++){
+            if(!Bivariate.ReactBelMode){
+                if(TwoGame.Map[x + y * widthMap] == 1)
+                canvasContextCPU.rect(
+                    (x * resolution) - resolution, 
+                    (y * resolution) - resolution, 
+                    (resolution- 0.5), (resolution - 0.5) ); 
+            }else{
+                switch(TwoGame.Map[x + y * widthMap]){
+                    case 1: 
+                    canvasContextCPU.fillStyle = colorTwo;
+                    canvasContextCPU.fillRect(
+                        (x * resolution) - resolution, 
+                        (y * resolution) - resolution, 
+                        resolution, resolution); 
+                    break;
+                    case 2: 
+                    canvasContextCPU.fillStyle = colorThree;
+                    canvasContextCPU.fillRect(
+                        (x * resolution) - resolution, 
+                        (y * resolution) - resolution, 
+                        resolution, resolution); 
+                    break;
+                }
+            }
+            
+        }
+       
+
+    canvasContextCPU.closePath();
+    canvasContextCPU.fill();
 }
 
 const render = gpu.createKernel(function(mas, wid, flag, size, color) {  
@@ -153,10 +216,18 @@ function AddRemoveCell(add, posX, posY) {
 
 //Нажатие на canvas
 function canvasClick(x, y) {
-    if(!Bivariate.ReactBelMode){
-        let posX =Math.ceil(x / resolution);
-        let posY =TwoGame.height - Math.round(y / resolution) - 1;
-        if(TwoGame != undefined)
+    if(!Bivariate.ReactBelMode && TwoGame){
+        let posX; 
+        let posY; 
+        if(renderSetting == 2){
+            posX = Math.ceil(x / resolution);
+            posY = Math.floor(y / resolution) + 1;
+        }else{
+            posX = Math.ceil(x / resolution);
+            posY = TwoGame.height - Math.round(y / resolution) - 1;
+        }
+        
+        if(TwoGame)
             AddRemoveCell(event.ctrlKey, posX, posY);
     }
 }  

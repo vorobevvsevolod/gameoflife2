@@ -10,8 +10,15 @@
 </head>
 
 <body id="body">
-    <div id="model">
+    <div class="model">
+        <h1>Внимание!</h1>
+        <p class="model__txt">На вашем устройстве нет <b>видеокарты</b> .</p>
+        <p class="model__txt">
+            Если ваш процессор достаточно мощный, выберите <b>мультиядерность</b> , иначе использование <b>одного ядра</b>.
+        </p>
 
+        <button class="model__btn model__btn1">Многоядерность</button>
+        <button class="model__btn model__btn2">Одно ядро</button>
     </div>
     <div class="setting">
         <button class="setting__btn" id="start">Старт</button>
@@ -116,8 +123,8 @@
                       
         
     </div>
-    <canvas id="canvas">
-    </canvas>
+    <canvas id="canvas"></canvas>
+    <canvas id="canvasCPU"></canvas>
 </body>
 <script src="js/gpu-browser.min.js"></script>
 <script src="js/BivariateClass.js"></script>

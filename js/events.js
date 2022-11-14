@@ -1,3 +1,6 @@
+let colorOne = '#A81F15';
+let colorTwo = '#8E58A7';
+let colorThree = '#62588D';
 $(document).ready(()=>{
     //открытие меню настроек
     $('#menu__toggle').on('click', ()=>{
@@ -121,6 +124,7 @@ $(document).ready(()=>{
     });
     
     $('#color').on('input', ()=>{ 
+        if(renderSetting == 2) canvasContextCPU.fillStyle = $('#color').val();
         let Color = toRGB($('#color').val());
             colorRGB[0][0] = (1/255) * Color[0];
             colorRGB[0][1] = (1/255) * Color[1];
@@ -129,7 +133,11 @@ $(document).ready(()=>{
     });
     
     $('#colorCellOne').on('input', ()=>{
-        let Color = toRGB($('#colorCellOne').val());
+        colorOne = $('#colorCellOne').val();
+        if(renderSetting == 2){
+            $('#body').css('background-color', colorOne)
+        }
+        let Color = toRGB(colorOne);
             colorRGB[3][0] = (1/255) * Color[0];
             colorRGB[3][1] = (1/255) * Color[1];
             colorRGB[3][2] = (1/255) * Color[2];
@@ -137,7 +145,8 @@ $(document).ready(()=>{
     });
     
     $('#colorCellTwo').on("input", () =>{
-        let Color = toRGB($('#colorCellTwo').val());
+        colorTwo = $('#colorCellTwo').val();
+        let Color = toRGB(colorTwo);
         colorRGB[2][0] = (1/255) * Color[0];
         colorRGB[2][1] = (1/255) * Color[1];
         colorRGB[2][2] = (1/255) * Color[2];
@@ -145,7 +154,9 @@ $(document).ready(()=>{
     });
     
     $('#colorCellThree').on('input', () =>{
-        let Color = toRGB($('#colorCellThree').val());
+        colorThree = $('#colorCellThree').val();
+        
+        let Color = toRGB(colorThree);
         colorRGB[1][0] = (1/255) * Color[0];
         colorRGB[1][1] = (1/255) * Color[1];
         colorRGB[1][2] = (1/255) * Color[2];
@@ -208,6 +219,16 @@ $(document).ready(()=>{
         Bivariate.ReactBelMode = $('#reactBel').is(':checked');
         $('#openBlockRuls').slideToggle();
 
+        if(renderSetting == 2 && Bivariate.ReactBelMode){
+            $('#body').css('background-color', colorOne);
+            resolution = 7;
+            $('#resolution').attr('min',6);
+        }else{
+            $('#body').css('background-color', $('#colorBody').val());
+            canvasContextCPU.fillStyle = $('#color').val();
+            $('#resolution').attr('min',3); 
+        }
+
         if($('#blockRuls').css('display')){
             $('#blockRuls').slideUp();
             $('#arrowRuls').removeClass('gamesruls__open')
@@ -249,6 +270,27 @@ $(document).ready(()=>{
         if(TwoGame !== undefined)canvasClick(event.touches[0].clientX, event.touches[0].clientY);   
     });
 
+    //Использование процессора
+    
+    $('#canvasCPU').on('mousemove', (event) =>{      
+        if(draw && WIDHT >= 400) canvasClick(event.clientX, event.clientY);
+        
+    });
+
+    $('#canvasCPU').on('mouseup', () =>{
+        draw = false;
+    });
+
+    $('#canvasCPU').on('mousedown', () =>{
+        draw = true;
+    });
+    $('#canvasCPU').on('click', (event) =>{
+        if(TwoGame !== undefined) canvasClick(event.clientX, event.clientY);
+    });
+
+    
+
+
     let openGameRuls = false;
     let openGameSetting = false;
     
@@ -267,6 +309,23 @@ $(document).ready(()=>{
         else $('#arrowSetting').removeClass('gamesruls__open')
     });
 
+
+    $('.model__btn1').on('click', () =>{
+        $('.model').fadeToggle();
+        $('#canvasCPU').css('display', 'none');
+    });
+
+    $('.model__btn2').on('click', () =>{
+
+        $('.model').fadeToggle();
+        renderSetting = 2;
+        $('#canvas').css('display', 'none');
+        canvasCPU.width = WIDHT;
+        canvasCPU.height = HEIGHT;
+        resolution = 3;
+        $('#resolution').attr('min',3);
+        canvasContextCPU.fillStyle = "#ff0000";
+    });
 
 
 });

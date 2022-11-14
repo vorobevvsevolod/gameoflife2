@@ -21,8 +21,66 @@ body{
     background-color: black;
 }
 
+button{
+    cursor: pointer;
+}
+
 #canvas{
     display: block;
+    z-index: 10;
+}
+#canvasCPU{
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: block;
+    z-index: 100;
+}
+
+.model{
+    display: none;
+    padding: 1.5em;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 2000;
+    background-color: white;
+    width: 560px;
+    height: 255px;
+    border-radius: 1em;
+
+    h1{
+        font-weight: bold;
+        margin: 0;
+        margin-bottom: 0.28em;
+        font-size: 3em;
+        position: relative;
+        left: 28%;
+        color: #E84545;
+    }
+
+    &__txt{
+        margin-top: 0.3em;
+        font-size: 1.5em;
+    }
+
+    &__btn{
+        position: absolute;
+        bottom: 4%;
+        padding: 0.3em 1em;
+        background-color: #1E2022;
+        color: white;
+        border-radius: 4px;
+        font-weight: bold;
+    }
+
+    &__btn1{
+        left: 25%;
+    }
+    &__btn2{
+        right: 25%;
+    }
 }
 
 .setting{
@@ -39,6 +97,7 @@ body{
         margin-right: 0.66em;
         border: 2px solid black;
         font-weight: bold;
+        z-index: 1000;
     }
 
     &__generation{  
@@ -47,6 +106,7 @@ body{
         margin-left: 0.5em;
         background-color: white;
         border-radius: 4px;
+        z-index: 1000;
     }
 }
 
@@ -62,6 +122,7 @@ body{
     font-weight: bold;
     color: white;
     display: none;
+    z-index: 1000;
 
     h1{
       margin: 0;
@@ -109,7 +170,7 @@ body{
     }
 
     &__open{
-        top: 14%;
+        top: 13%;
         transform: rotate(180deg);
     }
     &__block{
@@ -211,13 +272,17 @@ body{
 
 
 //Бургер меню
-
+.hamburger-menu{
+    z-index: 1000;
+}
 #menu__toggle{
     position: absolute;
     opacity: 0;
     outline: none;
     border: none;
     -webkit-tap-highlight-color: transparent;
+    z-index: 1000;
+
 }
 #menu__toggle:checked + .menu__btn > span {
     transform: rotate(45deg);
@@ -242,8 +307,7 @@ body{
     width: 30px;
     height: 35px;
     cursor: pointer;
-    z-index: 10;
-
+    z-index: 10000;
   }
 
 .menu__btn > span,
@@ -260,7 +324,6 @@ body{
 .menu__btn > span::before {
   content: '';
   top: -8px;
-
 }
 .menu__btn > span::after {
   content: '';
