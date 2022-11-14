@@ -62,7 +62,7 @@ window.onload = () =>{
 
     let n = vendor.split(" ");
     n[n.length - 1].substring(1);
-    let result = n[n.length - 1].slice(1,-1);
+    let result = n[n.length - 1].slice(1, -1);
     console.log(vendor, result)
     if(result == 'Intel' ) $('.model').fadeToggle();
 };
@@ -224,7 +224,7 @@ function canvasClick(x, y) {
             posY = Math.floor(y / resolution) + 1;
         }else{
             posX = Math.ceil(x / resolution);
-            posY = TwoGame.height - Math.round(y / resolution) - 1;
+            posY = TwoGame.height - Math.round(y / resolution) - 2;
         }
         
         if(TwoGame)
