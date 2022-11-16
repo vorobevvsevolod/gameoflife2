@@ -5,7 +5,7 @@ let canvasContextGPU
 try{
     canvasContextGPU = canvasGPU.getContext('webgl2') ||canvasGPU.getContext('webgl') || canvas.getContext('experimental-webgl2')|| canvas.getContext('experimental-webgl');
 }catch(e){
-alert("Ваш браузер не поддерживает технологию WebGl")
+alert("Ваш браузер не поддерживает технологию WebGl");
 }
 
 
@@ -72,7 +72,10 @@ window.onload = () =>{
     n[n.length - 1].substring(1);
     let result = n[n.length - 1].slice(1, -1);
     console.log(vendor, result, n[0])
+    
     if(result == n[0] ) $('.model').fadeToggle(); else $('#canvasCPU').remove(); 
+
+    if($('.model').css('display') != 'block') $('.model__info').fadeToggle();
 };
  
 

@@ -318,10 +318,11 @@ $(document).ready(()=>{
     $('.model__btn1').on('click', () =>{
         $('.model').fadeToggle();
         $('#canvasCPU').remove();
+        $('.model__info').fadeToggle();
     });
 
     $('.model__btn2').on('click', () =>{
-
+        $('.model__info').fadeToggle();
         $('.model').fadeToggle();
         renderSetting = 2;
         $('#canvas').remove();
