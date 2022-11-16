@@ -336,6 +336,7 @@ $(document).ready(()=>{
     //Модальное окно информации
     $('.model__info__btn').on('click', () =>{
         $('.model__info').fadeToggle();
+        $('.body').remove();
     });
 
     $('#arrow-rigth').on('click', () =>{
@@ -343,14 +344,14 @@ $(document).ready(()=>{
         
         $('.model__info__elipse').eq(countSlider + 1).addClass('model__info__elipse-open');
         $('.model__info__elipse').eq(countSlider).removeClass('model__info__elipse-open');
-        if(countSlider == 2) {
+        if(countSlider == 6) {
             $('#arrow-rigth').fadeOut();
             $('.model__info__btn').html("Выйти");
         }
         
         $('.model__info__content').eq(countSlider).slideToggle(400).fadeOut();
         
-        if(countSlider != 3) countSlider++;
+        if(countSlider != 7) countSlider++;
         if(countSlider == 1) $('#arrow-left').fadeIn();
         
         $('.model__info__content').eq(countSlider).slideToggle(400).fadeIn();
@@ -358,7 +359,7 @@ $(document).ready(()=>{
     })
 
     $('#arrow-left').on('click', () =>{
-        if(countSlider == 3) $('#arrow-rigth').fadeIn();
+        if(countSlider == 7) $('#arrow-rigth').fadeIn();
              
         $('.model__info__elipse').eq(countSlider).removeClass('model__info__elipse-open');
         $('.model__info__elipse').eq(countSlider - 1).addClass('model__info__elipse-open');
@@ -368,12 +369,8 @@ $(document).ready(()=>{
         $('.model__info__content').eq(countSlider).slideToggle(400).fadeIn();
         
         if(countSlider == 0) $('#arrow-left').fadeOut();
-        
-
     })
 });
-
-
 
 //Конвертер #000000 в rgb
 function toRGB(hex) {      

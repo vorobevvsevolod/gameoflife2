@@ -12,172 +12,249 @@
 </head>
 
 <body id="body">
-    <div class="model">
-        <h1>Внимание!</h1>
-        <p class="model__txt">На вашем устройстве нет <b>видеокарты</b> .</p>
-        <p class="model__txt">
-            Если ваш процессор достаточно мощный, выберите <b>мультиядерность</b>, иначе использование <b>одного ядра</b>.
-        </p>
-
-        <button class="model__btn model__btn1">Многоядерность</button>
-        <button class="model__btn model__btn2">Одно ядро</button>
-    </div>
-    <div class="model__info" >
-        <div class="model__info__elipse__col">
-            <div class="model__info__elipse model__info__elipse-open"></div>
-            <div class="model__info__elipse"></div>
-            <div class="model__info__elipse"></div>
-            <div class="model__info__elipse"></div>
+    <div class="body"></div>
+        <div class="model">
+            <h1>Внимание!</h1>
+            <p class="model__txt">На вашем устройстве нет <b>видеокарты</b> .</p>
+            <p class="model__txt">
+                Если ваш процессор достаточно мощный, выберите <b>мультиядерность</b>, иначе использование <b>одного ядра</b>.
+            </p>
+    
+            <button class="model__btn model__btn1">Многоядерность</button>
+            <button class="model__btn model__btn2">Одно ядро</button>
         </div>
-   
-        <img id="arrow-rigth"  src="src/arrow-rigth.png" alt="" class="model__info__img model__info__arrow-rigth">
 
-        <img id="arrow-left" class="model__info__img model__info__arrow-left" src="src/arrow-left.png" alt="">
-        <button class="model__info__btn" >Пропустить</button>
-
-        <div class="model__info__content">
-            <h1>Добро пожаловать</h1>
-            <h3>Это <span>Двумерный клеточный автомат</span> 
-            - представляет поле <b>ширина</b> * <b>высота</b>, которое выглядит, как тетрадка в клетку. </h3> 
-            <h3>Каждая клетка может находится в двух состояних: незакрашенная - <b style="color: #E61C5D;">мертвая</b>, закрашенная - <b style="color: #17B978;">живая</b>. </h3>
-            <img class="model__info__content__img model__info__content__img--1" src="src/content1.jpg" alt="">
-        </div>  
-        <div class="model__info__content" style="display: none;">
-            <h1>О чем речь...</h1>
-            <h3>Самым популярным клеточным автоматом является <b style="color: #E61C5D;">"Игра жизнь Конвея"</b></h3> 
-            <h3>Это симуляция колонии <b style="color: #17B978;">бактерий</b>. </h3>
-            <h3>В первом поколении случайным образом заселяется поле живыми клетками.</h3>
-           
-            <img class="model__info__content__img model__info__content__img--2" src="src/content2.jpg.png" alt="">
-        </div>  
-        <div class="model__info__content" style="display: none;">
-            <h1>Далее</h1>
-            <h3>Мы считаем у каждой клетки, <b style="color: #17B978;">живой</b> или <b style="color: #E61C5D;">мертвой</b> её количество соседей. </h3> 
-            <h3>По правилу:</h3> 
-            <h3><b style="color: #7030A0;">Окрестность мура</b> - 8 ближайщих соседей.</h3>
-            <h3><b style="color: #FFC002;">Окрестоть Фон Неймона</b> - 4 ближайщих соседей</h3>
-            <img class="model__info__content__img model__info__content__img--3" src="src/content3.1.png" alt="" >
+        <div class="model__info" >
+            <div class="model__info__elipse__col">
+                <div id="el_1" class="model__info__elipse model__info__elipse-open"></div>
+                <div class="model__info__elipse"></div>
+                <div class="model__info__elipse"></div>
+                <div class="model__info__elipse"></div>
+                <div class="model__info__elipse"></div>
+                <div class="model__info__elipse"></div>
+                <div class="model__info__elipse"></div>
+                <div class="model__info__elipse"></div>
+            </div>
        
-        </div> 
-        <div class="model__info__content" style="display: none;">
-            <h1>Правила </h1>
-            <h3>После заполнения <b style="color: #E61C5D;">первого поколения</b> и <b style="color: #7030A0;">подсчета соседей</b>, мы применяем правила, и на основе них решаем выживет клетка или нет.</h3>
-
-            <h3 style="margin: 1em 0em 1em 1.5em ;"><img src="src/ромб.png" class="content__romb" alt=""> Если клетка <b style="color: #17B978;">живая</b> и она имеет <b>2</b> или <b>3</b> соседей 
-            - она выживает и переходит на <b style="color: #17B978;">следующее поколение</b>, иначе она <b style="color: #E61C5D;">погибает</b>.</h3>
-
-            <h3 style="margin: 1em 0em 1em 1.5em ;"><img src="src/ромб.png" class="content__romb" alt=""> Если клетка <b style="color: #E61C5D;">мертвая</b> и она имеет <b>3</b> соседей 
-                - она <b style="color: #17B978;">рождается</b> в следующем поколении.</h3>
-            <img class="model__info__content__img model__info__content__img--4" src="src/content4.1.png" alt="" style="width:16em; height: 16em;">
-            <h3 style="margin: 1.5em 0em 3em 0em;">Клетка <b style="color: #E61C5D;">погибает</b>, так как у нее 4 соседа</h3>
-        </div>  
-        
-    </div>
-    <div class="setting">
-        <button class="setting__btn" id="start">Старт</button>
-        <button class="setting__btn" id="stop">Стоп</button>
-        <p class="setting__generation">Поколение: 0 </p>
-    </div>
+            <img id="arrow-rigth"  src="src/arrow-rigth.png" alt="" class="model__info__img model__info__arrow-rigth">
     
-    <div class="hamburger-menu" >
-        <input id="menu__toggle" type="checkbox" />
-         <label class="menu__btn" for="menu__toggle">
-       <span></span>
-     </div>
+            <img id="arrow-left" class="model__info__img model__info__arrow-left" src="src/arrow-left.png" alt="">
+            <button class="model__info__btn" >Пропустить</button>
+
+            <div class="model__info__content">
+                <h1>Добро пожаловать</h1>
+                <h3>Это <span>Двумерный клеточный автомат</span> 
+                - представляет поле <b>ширина</b> * <b>высота</b>, которое выглядит, как тетрадка в клетку. </h3> 
+                <h3>Каждая клетка может находится в двух состояних: незакрашенная - <b style="color: #E61C5D;">мертвая</b>, закрашенная - <b style="color: #17B978;">живая</b>. </h3>
+                <img class="model__info__content__img model__info__content__img--1" src="src/content1.jpg" alt="">
+            </div> 
+
+            <div class="model__info__content" style="display: none;">
+                <h1>О чем речь...</h1>
+                <h3>Самым популярным клеточным автоматом является <b style="color: #E61C5D;">"Игра жизнь Конвея"</b></h3> 
+                <h3>Это симуляция колонии <b style="color: #17B978;">бактерий</b>. </h3>
+                <h3>В первом поколении случайным образом заселяется поле живыми клетками.</h3>
+               
+                <img class="model__info__content__img model__info__content__img--2" src="src/content2.jpg.png" alt="">
+            </div> 
+
+            <div class="model__info__content" style="display: none;">
+                <h1>Далее</h1>
+                <h3>Мы считаем у каждой клетки, <b style="color: #17B978;">живой</b> или <b style="color: #E61C5D;">мертвой</b> её количество соседей. </h3> 
+                <h3>По правилу:</h3> 
+                <h3><b style="color: #7030A0;">Окрестность мура</b> - 8 ближайщих соседей.</h3>
+                <h3><b style="color: #FFC002;">Окрестоть Фон Неймона</b> - 4 ближайщих соседей</h3>
+                <img class="model__info__content__img model__info__content__img--3" src="src/content3.1.png" alt="" >
+           
+            </div> 
+
+            <div class="model__info__content" style="display: none;">
+                <h1>Правила </h1>
+                <h3>После заполнения <b style="color: #E61C5D;">первого поколения</b> и <b style="color: #7030A0;">подсчета соседей</b>, мы применяем правила, и на основе них решаем выживет клетка или нет.</h3>
     
-    <div class="settings" id="settings">
-        <h1>Настройки</h1>
-            <div class="reactBel">
-                
-            </div>
-            <div class="gamesruls" id="openBlockRuls">
-                Правила игры
-                <img class="gamesruls__img" src="src/треугольник.png" alt="" id="arrowRuls">
-
-                
-            </div>
-            <div class="gamesruls__block" id="blockRuls">  
-                <div class="gamesruls__okr">
-                    <p>Окрестность:</p>  
-                    <select id="okrSelect" class="select" >
-                        <option value="0">Мура</option>
-                        <option value="1">Фон Неймана</option>
-                    </select>
-                </div>
-                <p class="gamesruls__burn">Рождение от 
-                    <input type="number" class="gamesruls__number"value="3" min="0" max="8" id="burnTo"> до 
-                    <input type="number" class="gamesruls__number"value="3" min="0" max="8" id="burnUp">
-                </p>
-                <p class="gamesruls__burn">Выживание от 
-                    <input type="number" class="gamesruls__number" value="2" min="0" max="8" id="saveTo"> до 
-                    <input type="number" class="gamesruls__number" value="3" min="0" max="8"id="saveUp">
-                </p>
-                <div class="gamesruls__presset"> 
-                    <p>Прессеты</p> 
-                    <select id="presset" class="selectPresset">
-                        <option value="1" >B3/S23</option>
-                        <option value="2" >B3/Sall</option>
-                        <option value="3" >B5678/S45678</option>
-                        <option value="4" >B1/Sall</option>
-                        <option value="5" >B2/S2345</option>
-                    </select>
-                </div>
-                
-            </div>
-
-            <div class="gamesruls" id="openBlockSetting">
-                Настройки игры
-                <img class="gamesruls__img" src="src/треугольник.png" alt="" id="arrowSetting">
-
-                
-            </div>
-
-            <div class="gamesruls__block block__setting" id="blockSetting">
-                <div class="speedSetting">
-                    <p>Скорость</p> 
-                    <select id="speedSelect">
-                        <option value="1000">1x</option>
-                        <option value="500">2x</option>
-                        <option value="200">5x</option>
-                        <option value="100">10x</option>
-                        <option value="50">20x</option>
-                        <option value="10">50x</option>
-                        <option selected="speedSelect" value="1">100x</option>
-                        </select>
-                </div>
-                <div class="colors" id="colors">Цвет
-                    <input type="color" id="colorBody" class="colors__color" value="#000000"/>
-                    <input type="color" id="color" class="colors__color" value="#ff0000"/>
-                </div>
-                <div id="reactBelSetings" style="display: none;">
-                    <div class="color__txt color__cell">Цвет:
-                        <input type="color" id="colorCellOne" class="colorBel" value="#A81F15"/>
-                        <input type="color" id="colorCellTwo" class="colorBel" value="#8E58A7"/>
-                        <input type="color" id="colorCellThree" class="colorBel" value="#62588D"/>
-                    </div>
-                </div>
-                <div class="resolution">Разрешение:
-                    <input type="range" min="1" max="25" value="1" id="resolution" class="resolution__input">
-                </div>
-                <div class="modeStep">
-                    Режим шаг: <input type="checkbox" id="checkboxStep">
-                </div>
+                <h3 style="margin: 1em 0em 1em 1em ;"><img src="src/ромб.png" class="content__romb" alt=""> Если клетка <b style="color: #17B978;">живая</b> и она имеет <b>2</b> или <b>3</b> соседей 
+                - она выживает и переходит на <b style="color: #17B978;">следующее поколение</b>, иначе она <b style="color: #E61C5D;">погибает</b>.</h3>
+    
+                <h3 style="margin: 1em 0em 1em 1em ;"><img src="src/ромб.png" class="content__romb" alt=""> Если клетка <b style="color: #E61C5D;">мертвая</b> и она имеет <b>3</b> соседей 
+                    - она <b style="color: #17B978;">рождается</b> в следующем поколении.</h3>
+                <img class="model__info__content__img model__info__content__img--4" src="src/content4.1.png" alt="">
+                <h3 style="margin: 1.5em 0em 3em 0em;">Клетка <b style="color: #E61C5D;">погибает</b>, так как у нее 4 соседа</h3>
             </div> 
-            <div class="reactbel__input">
-                <p>Реакция Белоусова </p> 
-                <input type="checkbox" id="reactBel">
+
+            <div class="model__info__content content-5" style="display: none;">
+                <h1>Реакция Белоусова</h1>
+                <div class="model__info__content--61__head">
+                    <img class="model__info__content__img--61" src="src/content6.1.jpg" alt="">
+                    <h3>Слева фотография химической реакции <b style="color: #7030A0;">Белоусова-Жаботинского</b>.</h3>
+                </div>
+                <h3 style="margin: 1em 0em; " ><img src="src/ромб.png" class="content__romb" alt=""> 
+                <b style="margin-left: 2px;">Выберите реакцию Белоусова</b>  - вменю настроек, чтобы симулировать эту реакцию.
+                </h3>
+                <img src="src/content6.2.png" alt="" class="model__info__content__img--62">            
             </div> 
-            <div class="brushes">
-                Режим кисти: <button id="brushes__btn" >Рисование</button>
-            </div>
+
+            <div class="model__info__content" style="display: none;">
+                <h1>Настройки </h1>
+                <div class="model__info__content--51__head">
+                    <img class="model__info__content__img--51" src="src/content5.1.png" alt="">
+                    <h3>В правом верхнем углу находятся <b>Настройки</b>, там вы можете изменить: правила игры, цвет клеток, масштаб колонии и т.д.</h3>
+                </div>
+                
+                <img class="model__info__content__img model__info__content__img--52" src="src/content5.2.png" alt="">
+                              
+                <h3 style="margin: 1em 0em;"><img src="src/ромб.png" class="content__romb" alt=""> 
+                <b style="margin-left: 7px;">Окрестность</b> - Изменение подсчета соседей: <b style="color: #7030A0;">Мура</b> или <b style="color: #7030A0;">Фон Неймана</b>. 
+                </h3>
+
+                <h3 style="margin: 1em 0em;"><img src="src/ромб.png" class="content__romb" alt=""> 
+                <b style="margin-left: 2px;">Рождение</b> - вы можете изменить при каком количестве соседей, <b style="color: #E61C5D;">мертвая</b> клетка <b style="color: #17B978;">родится</b>.
+                </h3>
+
+                <h3 style="margin: 1em 0em; " ><img src="src/ромб.png" class="content__romb" alt=""> 
+                <b style="margin-left: 2px;">Прессеты</b> - тут собраны правила, которые я сам нашел опробуйте их, каждое правило уникальное.
+                </h3>
+                <h3><b style="color: #7030A0;">B</b> - <i>"Born"</i> обозначения правил рождения.</h3>
+                <h3 style="margin-bottom: 3em;"><b style="color: #7030A0;">S</b> - <i>"Save"</i> обозначения правил выживания.</h3>
+            </div>  
+
+            <div class="model__info__content" style="display: none;">
+                <h1>Настройки </h1>              
+                <img class="model__info__content__img model__info__content__img--71" src="src/content7.1.png" alt="">
+                              
+                <h3 style="margin: 1em 0em;"><img src="src/ромб.png" class="content__romb" alt=""> 
+                <b style="margin-left: 11px;">Скорость</b> - изменение скорости игры.</b>.</h3>
+
+                <h3 style="margin: 1em 0em;"><img src="src/ромб.png" class="content__romb" alt=""> 
+                <b style="margin-left: 13px;">Цвет</b> - первый - это цвет <b style="color: #7030A0;">фона</b>. Второй - цвет <b style="color: #7030A0;">клетки</b>.
+                </h3>
+
+                <h3 style="margin: 1em 0em; " ><img src="src/ромб.png" class="content__romb" alt=""> 
+                <b>Разрешение</b> - вы можете увеличить масштаб <b style="color: #17B978;">колонии</b>. Изначально мастшаб <b>1</b> к <b>1</b>.
+                </h3>
+
+                <h3  ><img src="src/ромб.png" class="content__romb" alt=""> 
+                <b style="margin-left: 10px;">Режим шаг</b> - этот режим позволяет наблюдать за колонией "пошагово", рассматривать каждое поколение, сколько вам угодно времени.
+                </h3>
+              
+                <h3 class="content7" ><img src="src/ромб.png" class="content__romb" alt=""> 
+                <b style="margin-left: 15px;">Рисование</b> - вы можете рисовать наполотне мышкой или пальцем.
+                <i> P.S. Не на всех телефонах эта функция работает корректно.</i>
+                </h3>
+            </div> 
+
+            <div class="model__info__content" style="display: none;">
+                <h1>Конец... </h1>              
+                <img class="model__info__content__img--81" src="src/content8.jpg" alt="">
+                <h3>Если у вас возникли проблемы с оптимизацией, отрисовкой или у вас есть предложения по улучшению проекта.</h3>
+                <h3 style="margin-bottom: 2em;">Пожалуйста, свяжитесь со мной через VK <a href="https://vk.com/seva_vorobyev" style="color: black;">https://vk.com/seva_vorobyev</a></h3>
+            </div> 
+
             
-            <button id="clear" >Очистить поле</button>
-
-                      
+        </div>
         
-    </div>
-    <canvas id="canvas"></canvas>
-    <canvas id="canvasCPU"></canvas>
+        <div class="setting">
+            <button class="setting__btn" id="start">Старт</button>
+            <button class="setting__btn" id="stop">Стоп</button>
+            <p class="setting__generation">Поколение: 0 </p>
+        </div>
+        
+        <div class="hamburger-menu" >
+            <input id="menu__toggle" type="checkbox" />
+             <label class="menu__btn" for="menu__toggle">
+           <span></span>
+         </div>
+        
+        <div class="settings" id="settings">
+            <h1>Настройки</h1>
+                <div class="reactBel">
+                    
+                </div>
+                <div class="gamesruls" id="openBlockRuls">
+                    Правила игры
+                    <img class="gamesruls__img" src="src/треугольник.png" alt="" id="arrowRuls">
+    
+                    
+                </div>
+                <div class="gamesruls__block" id="blockRuls">  
+                    <div class="gamesruls__okr">
+                        <p>Окрестность:</p>  
+                        <select id="okrSelect" class="select" >
+                            <option value="0">Мура</option>
+                            <option value="1">Фон Неймана</option>
+                        </select>
+                    </div>
+                    <p class="gamesruls__burn">Рождение от 
+                        <input type="number" class="gamesruls__number"value="3" min="0" max="8" id="burnTo"> до 
+                        <input type="number" class="gamesruls__number"value="3" min="0" max="8" id="burnUp">
+                    </p>
+                    <p class="gamesruls__burn">Выживание от 
+                        <input type="number" class="gamesruls__number" value="2" min="0" max="8" id="saveTo"> до 
+                        <input type="number" class="gamesruls__number" value="3" min="0" max="8"id="saveUp">
+                    </p>
+                    <div class="gamesruls__presset"> 
+                        <p>Прессеты</p> 
+                        <select id="presset" class="selectPresset">
+                            <option value="1" >B3/S23</option>
+                            <option value="2" >B3/Sall</option>
+                            <option value="3" >B5678/S45678</option>
+                            <option value="4" >B1/Sall</option>
+                            <option value="5" >B2/S2345</option>
+                        </select>
+                    </div>
+                    
+                </div>
+    
+                <div class="gamesruls" id="openBlockSetting">
+                    Настройки игры
+                    <img class="gamesruls__img" src="src/треугольник.png" alt="" id="arrowSetting">
+    
+                    
+                </div>
+    
+                <div class="gamesruls__block block__setting" id="blockSetting">
+                    <div class="speedSetting">
+                        <p>Скорость</p> 
+                        <select id="speedSelect">
+                            <option value="1000">1x</option>
+                            <option value="500">2x</option>
+                            <option value="200">5x</option>
+                            <option value="100">10x</option>
+                            <option value="50">20x</option>
+                            <option value="10">50x</option>
+                            <option selected="speedSelect" value="1">100x</option>
+                            </select>
+                    </div>
+                    <div class="colors" id="colors">Цвет
+                        <input type="color" id="colorBody" class="colors__color" value="#000000"/>
+                        <input type="color" id="color" class="colors__color" value="#ff0000"/>
+                    </div>
+                    <div id="reactBelSetings" style="display: none;">
+                        <div class="color__txt color__cell">Цвет:
+                            <input type="color" id="colorCellOne" class="colorBel" value="#A81F15"/>
+                            <input type="color" id="colorCellTwo" class="colorBel" value="#8E58A7"/>
+                            <input type="color" id="colorCellThree" class="colorBel" value="#62588D"/>
+                        </div>
+                    </div>
+                    <div class="resolution">Разрешение:
+                        <input type="range" min="1" max="25" value="1" id="resolution" class="resolution__input">
+                    </div>
+                    <div class="modeStep">
+                        Режим шаг: <input type="checkbox" id="checkboxStep">
+                    </div>
+                </div> 
+                <div class="reactbel__input">
+                    <p>Реакция Белоусова </p> 
+                    <input type="checkbox" id="reactBel">
+                </div> 
+                <div class="brushes">
+                    Режим кисти: <button id="brushes__btn" >Рисование</button>
+                </div>
+                
+                <button id="clear" >Очистить поле</button>        
+        </div>
+        <canvas id="canvas"></canvas>
+        <canvas id="canvasCPU"></canvas>
+      
 </body>
 <script src="js/gpu-browser.min.js"></script>
 <script src="js/BivariateClass.js"></script>
