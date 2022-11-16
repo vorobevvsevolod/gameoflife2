@@ -180,9 +180,11 @@ $(document).ready(()=>{
 
     //изменения масштаба
     $('#resolution').on('input', () =>{
-        resolution = Number($('#resolution').val());
-        restartGame();
-        requestAnimationFrame(printRequstMap);
+        if(TwoGame){
+            resolution = Number($('#resolution').val());
+            restartGame();
+            requestAnimationFrame(printRequstMap);
+        }    
     });
 
     //Изменение режима кисти на телефоне
@@ -284,9 +286,12 @@ $(document).ready(()=>{
     $('#canvasCPU').on('mousedown', () =>{
         draw = true;
     });
+
     $('#canvasCPU').on('click', (event) =>{
         if(TwoGame !== undefined) canvasClick(event.clientX, event.clientY);
     });
+
+    
 
     
 
@@ -309,17 +314,17 @@ $(document).ready(()=>{
         else $('#arrowSetting').removeClass('gamesruls__open')
     });
 
-
+    //модальное окно когда нет видеокарты
     $('.model__btn1').on('click', () =>{
         $('.model').fadeToggle();
-        $('#canvasCPU').css('display', 'none');
+        $('#canvasCPU').remove();
     });
 
     $('.model__btn2').on('click', () =>{
 
         $('.model').fadeToggle();
         renderSetting = 2;
-        $('#canvas').css('display', 'none');
+        $('#canvas').remove();
         canvasCPU.width = WIDHT;
         canvasCPU.height = HEIGHT;
         resolution = 3;
@@ -327,8 +332,47 @@ $(document).ready(()=>{
         canvasContextCPU.fillStyle = "#ff0000";
     });
 
+    //Модальное окно информации
+    $('.model__info__btn').on('click', () =>{
+        $('.model__info').fadeToggle();
+    });
 
+    $('#arrow-rigth').on('click', () =>{
+        
+        
+        $('.model__info__elipse').eq(countSlider + 1).addClass('model__info__elipse-open');
+        $('.model__info__elipse').eq(countSlider).removeClass('model__info__elipse-open');
+        if(countSlider == 2) {
+            $('#arrow-rigth').fadeOut();
+            $('.model__info__btn').html("Выйти");
+        }
+        
+        $('.model__info__content').eq(countSlider).slideToggle(400).fadeOut();
+        
+        if(countSlider != 3) countSlider++;
+        if(countSlider == 1) $('#arrow-left').fadeIn();
+        
+        $('.model__info__content').eq(countSlider).slideToggle(400).fadeIn();
+        
+    })
+
+    $('#arrow-left').on('click', () =>{
+        if(countSlider == 3) $('#arrow-rigth').fadeIn();
+             
+        $('.model__info__elipse').eq(countSlider).removeClass('model__info__elipse-open');
+        $('.model__info__elipse').eq(countSlider - 1).addClass('model__info__elipse-open');
+
+        $('.model__info__content').eq(countSlider).slideToggle(400).fadeOut();
+        countSlider--;
+        $('.model__info__content').eq(countSlider).slideToggle(400).fadeIn();
+        
+        if(countSlider == 0) $('#arrow-left').fadeOut();
+        
+
+    })
 });
+
+
 
 //Конвертер #000000 в rgb
 function toRGB(hex) {      

@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no maximum-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <title>Game Of Life</title>
-
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -19,6 +21,49 @@
 
         <button class="model__btn model__btn1">Многоядерность</button>
         <button class="model__btn model__btn2">Одно ядро</button>
+    </div>
+    <div class="model__info" style="display: none;">
+        <div class="model__info__elipse__col">
+            <div class="model__info__elipse model__info__elipse-open"></div>
+            <div class="model__info__elipse"></div>
+            <div class="model__info__elipse"></div>
+            <div class="model__info__elipse"></div>
+        </div>
+   
+        <img id="arrow-rigth"  src="src/arrow-rigth.png" alt="" class="model__info__img model__info__arrow-rigth">
+
+        <img id="arrow-left" class="model__info__img model__info__arrow-left" src="src/arrow-left.png" alt="">
+        <button class="model__info__btn" >Пропустить</button>
+
+        <div class="model__info__content">
+            <h1>Добро пожаловать</h1>
+            <h3>Это <span>Двумерный клеточный автомат</span> 
+            - представляет поле <b>ширина</b> * <b>высота</b>, которое выглядит, как тетрадка в клетку. </h3> 
+            <h3>Каждая клетка может находится в двух состояних: незакрашенная - <b style="color: #E61C5D;">мертвая</b>, закрашенная - <b style="color: #17B978;">живая</b>. </h3>
+            <img class="model__info__content__img" src="src/content1.jpg" alt="">
+        </div>  
+        <div class="model__info__content" style="display: none;">
+            <h1>Правила </h1>
+            <h3>Это <span>Двумерный клеточный автомат</span> 
+            - представляет поле <b>ширина</b> * <b>высота</b>, которое выглядит, как тетрадка в клетку. </h3> 
+            <h3>Каждая клетка может находится в двух состояних: незакрашенная - <b style="color: #E61C5D;">мертвая</b>, закрашенная - <b style="color: #17B978;">живая</b>. </h3>
+            <img class="model__info__content__img" src="src/content1.jpg" alt="">
+        </div>  
+        <div class="model__info__content" style="display: none;">
+            <h1>Настройки</h1>
+            <h3>Это <span>Двумерный клеточный автомат</span> 
+            - представляет поле <b>ширина</b> * <b>высота</b>, которое выглядит, как тетрадка в клетку. </h3> 
+            <h3>Каждая клетка может находится в двух состояних: незакрашенная - <b style="color: #E61C5D;">мертвая</b>, закрашенная - <b style="color: #17B978;">живая</b>. </h3>
+            <img class="model__info__content__img" src="src/content1.jpg" alt="">
+        </div> 
+        <div class="model__info__content" style="display: none;">
+            <h1>В разработке</h1>
+            <h3>Это <span>Двумерный клеточный автомат</span> 
+            - представляет поле <b>ширина</b> * <b>высота</b>, которое выглядит, как тетрадка в клетку. </h3> 
+            <h3>Каждая клетка может находится в двух состояних: незакрашенная - <b style="color: #E61C5D;">мертвая</b>, закрашенная - <b style="color: #17B978;">живая</b>. </h3>
+            <img class="model__info__content__img" src="src/content1.jpg" alt="">
+        </div>  
+        
     </div>
     <div class="setting">
         <button class="setting__btn" id="start">Старт</button>
@@ -96,7 +141,7 @@
                     <input type="color" id="colorBody" class="colors__color" value="#000000"/>
                     <input type="color" id="color" class="colors__color" value="#ff0000"/>
                 </div>
-                <div id="reactBelSetings">
+                <div id="reactBelSetings" style="display: none;">
                     <div class="color__txt color__cell">Цвет:
                         <input type="color" id="colorCellOne" class="colorBel" value="#A81F15"/>
                         <input type="color" id="colorCellTwo" class="colorBel" value="#8E58A7"/>

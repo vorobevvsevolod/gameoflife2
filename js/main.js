@@ -1,7 +1,13 @@
 'use strict'
 //CANVAS
 const canvasGPU = $('#canvas')[0];
-const canvasContextGPU = canvasGPU.getContext('webgl2') ||canvasGPU.getContext('webgl') || canvas.getContext('experimental-webgl2')|| canvas.getContext('experimental-webgl');
+let canvasContextGPU
+try{
+    canvasContextGPU = canvasGPU.getContext('webgl2') ||canvasGPU.getContext('webgl') || canvas.getContext('experimental-webgl2')|| canvas.getContext('experimental-webgl');
+}catch(e){
+alert("Ваш браузер не поддерживает технологию WebGl")
+}
+
 
 const canvasCPU = $('#canvasCPU')[0];
 const canvasContextCPU = canvasCPU.getContext('2d');
@@ -46,16 +52,18 @@ let colorRGB = [
 //Флаги
 let gameStop = false;
 let startGame = false;
-let openSeting = false;
 let modeBrushes = true;
 let modeStepGame = false;
 let draw = false;
+
+let countSlider = 0;
 
 window.onload = () =>{
     canvas.width = WIDHT;
     canvas.height = HEIGHT;
     widthMap = Math.ceil(WIDHT / resolution) + 2;
     heightMap = Math.ceil(HEIGHT / resolution) + 2;
+
     //Получение инфы о видеокарте
     let debugInfo = canvasContextGPU.getExtension('WEBGL_debug_renderer_info');
     let vendor = canvasContextGPU.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
@@ -63,29 +71,27 @@ window.onload = () =>{
     let n = vendor.split(" ");
     n[n.length - 1].substring(1);
     let result = n[n.length - 1].slice(1, -1);
-    console.log(vendor, result)
-    if(result == 'Intel' ) $('.model').fadeToggle();
+    console.log(vendor, result, n[0])
+    if(result == n[0] ) $('.model').fadeToggle(); else $('#canvasCPU').remove(); 
 };
  
 
 //Старт игры
-function startGameButton() {
-    if(!startGame){
-        restartGame();
-        $('#stop').html('Заново');
-    }
-    
+function startGameButton() {  
     if(modeStepGame){
         requestAnimationFrame(gameStepMode)
     }else{
         gameStop = gameStop ? false : true;
 
         if(gameStop && !startGame) gameStop = false;
-        if(gameStop) {$('#start').html('Старт'); cancelAnimationFrame(requestFrameId);} 
-        else 
-        {$('#start').html('Стоп'); requestFrameId = requestAnimationFrame(gameStep);}
-    }   
-    startGame = true;
+        if(gameStop) { $('#start').html('Старт'); cancelAnimationFrame(requestFrameId); } 
+        else { $('#start').html('Стоп'); requestFrameId = requestAnimationFrame(gameStep); }
+    }  
+    if(!startGame){
+        restartGame();
+        $('#stop').html('Заново');
+        startGame = true;
+    }     
 }
 
 //Перезапуск игры
@@ -194,25 +200,14 @@ const render = gpu.createKernel(function(mas, wid, flag, size, color) {
 //Добавление и удаления клеток
 function AddRemoveCell(add, posX, posY) {
     if(window.innerWidth <= 1200){
-        if(modeBrushes){
-            TwoGame.AddCellMap(posX, posY)
-            if(gameStop) requestAnimationFrame(printRequstMap)
-        }else{
-            TwoGame.RemoveCellMap(posX, posY)
-            if(gameStop) requestAnimationFrame(printRequstMap)
-        }
+        if(modeBrushes)TwoGame.AddCellMap(posX, posY); else TwoGame.RemoveCellMap(posX, posY);
+        
+        if(gameStop) requestAnimationFrame(printRequstMap);
     }else{
-        if(!add){
-
-            TwoGame.AddCellMap(posX, posY)
-            if(gameStop) requestAnimationFrame(printRequstMap)
-           
-        }else{
-            TwoGame.RemoveCellMap(posX, posY)
-            if(gameStop) requestAnimationFrame(printRequstMap)
-        }
-    }  
-}
+        if(!add) TwoGame.AddCellMap(posX, posY); else TwoGame.RemoveCellMap(posX, posY);
+        if(gameStop) requestAnimationFrame(printRequstMap);
+        }      
+}  
 
 //Нажатие на canvas
 function canvasClick(x, y) {
@@ -225,9 +220,7 @@ function canvasClick(x, y) {
         }else{
             posX = Math.ceil(x / resolution);
             posY = TwoGame.height - Math.round(y / resolution) - 2;
-        }
-        
-        if(TwoGame)
-            AddRemoveCell(event.ctrlKey, posX, posY);
+        }      
+        if(TwoGame)AddRemoveCell(event.ctrlKey, posX, posY);
     }
 }  
