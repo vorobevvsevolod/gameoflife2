@@ -225,10 +225,6 @@ $(document).ready(()=>{
             $('#body').css('background-color', colorOne);
             resolution = 7;
             $('#resolution').attr('min',6);
-        }else{
-            $('#body').css('background-color', $('#colorBody').val());
-            canvasContextCPU.fillStyle = $('#color').val();
-            $('#resolution').attr('min',3); 
         }
 
         if($('#blockRuls').css('display')){
@@ -290,10 +286,6 @@ $(document).ready(()=>{
     $('#canvasCPU').on('click', (event) =>{
         if(TwoGame !== undefined) canvasClick(event.clientX, event.clientY);
     });
-
-    
-
-    
 
 
     let openGameRuls = false;
